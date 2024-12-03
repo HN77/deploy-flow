@@ -1,0 +1,29 @@
+name: CI Pipeline for Express API
+
+on:
+  push:
+    branches:
+      - master # Déclenche uniquement sur la branche "main"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Cloner le code source
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Étape 2 : Configurer Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Adaptez à votre version Node.js
+
+      # Étape 3 : Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # Étape 4 : Lancer les tests
+      - name: Run tests
+        run: npm test
